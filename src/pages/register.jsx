@@ -6,9 +6,9 @@ export function Register(props) {
   let history = useHistory();
   const [input, setInput] = useState({
     name: "",
+    lastname: "",
     username: "",
     password: "",
-    isAdmin: false,
   });
   const [error, setError] = useState({});
   const handleInputChange = function (e) {
@@ -19,14 +19,24 @@ export function Register(props) {
   };
 
   const crearUsuario = async (user, password, name, lastname) => {
-    const res = await axios
-      .post("http://localhost:3001/api/user/register", {
-        email: user,
-        password: password,
-        name: name,
-        lastname: lastname,
-      })
-      .catch();
+    try {
+      const res = await axios.post(
+        "http://localhost:3001/api/auth/register",
+        {
+          email: user,
+          password: password,
+          name: name,
+          lastname: lastname,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const submitHandler = (e) => {
@@ -36,7 +46,7 @@ export function Register(props) {
     const user = e.target.idUsername.value;
     const password = e.target.idPassword.value;
     crearUsuario(user, password, name, lastname);
-    //history.push("/inicio");
+    history.push("/");
   };
 
   return (

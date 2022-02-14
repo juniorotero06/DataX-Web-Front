@@ -1,8 +1,14 @@
+import { SET_TOKEN } from "../actions";
 const initialState = {
-    authToken: "",
-  };
-  
-  function rootReducer(state = initialState, action) {
-    return state;
+  authToken: null,
+};
+
+function rootReducer(state = initialState, action) {
+  if (action.type === SET_TOKEN) {
+    return {
+      authToken: action.payload,
+    };
   }
-  export default rootReducer;
+  return state;
+}
+export default rootReducer;
