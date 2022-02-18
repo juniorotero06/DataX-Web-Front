@@ -12,13 +12,20 @@ export const SidebarData = [
     iconOpened: <RiIcons.RiArrowUpSFill />,
   },
   {
-    title: 'Users',
+    title: 'Usuarios',
     path: '/users',
     icon: <IoIcons.IoMdPeople />
   },
   {
-    title: 'Tasks',
-    path: '/tasks',
+    title: 'Licensias',
+    path: '/licenses',
+    icon: <IoIcons.IoIosPaper />,
+    iconClosed: <RiIcons.RiArrowDownSFill />,
+    iconOpened: <RiIcons.RiArrowUpSFill />,
+  },
+  {
+    title: 'Roles y Asociaciones',
+    path: '/pivot',
     icon: <IoIcons.IoIosPaper />,
     iconClosed: <RiIcons.RiArrowDownSFill />,
     iconOpened: <RiIcons.RiArrowUpSFill />,

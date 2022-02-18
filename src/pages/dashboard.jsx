@@ -1,17 +1,16 @@
 import axios from "axios";
 import React from "react";
+import Sidebar from "../components/SideBar"
 import { singOut } from "../redux/actions";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
-
-import SideBar from "../components/SideBar";
 
 const DashBoard = (props) => {
   let history = useHistory();
 
   const protectedDates = async () => {
     try {
-      const res = await axios
+      await axios
         .get("http://localhost:3001/api/", {
           headers: {
             "Content-Type": "application/json",
@@ -32,14 +31,15 @@ const DashBoard = (props) => {
     history.push("/");
   };
   React.useEffect(() => {
-    protectedDates();
+    if (!localStorage.getItem("token2")) {
+      protectedDates();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <>
-      <span>{props.authToken}</span>
-      <SideBar />
+      <Sidebar/>
       <button onClick={singOut}>Cerrar sesion</button>
     </>
   );
