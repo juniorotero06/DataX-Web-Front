@@ -23,6 +23,7 @@ const PivotTable = (props) => {
   };
   React.useEffect(() => {
     getPivotTable();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
