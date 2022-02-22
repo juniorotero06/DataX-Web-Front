@@ -1,4 +1,5 @@
 const SET_TOKEN = "SET_TOKEN";
+const HANDLE_SHOW = "HANDLE_SHOW";
 
 export function setToken(token) {
   return {
@@ -24,4 +25,11 @@ export function singOut() {
   };
 }
 
-export { SET_TOKEN };
+export function handleShowModal(bool) {
+  return {
+    type: HANDLE_SHOW,
+    payload: bool
+  }
+}
+
+export { SET_TOKEN, HANDLE_SHOW };

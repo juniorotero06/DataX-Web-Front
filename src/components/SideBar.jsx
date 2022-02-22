@@ -6,6 +6,7 @@ import * as AiIcons from "react-icons/ai";
 import { SidebarData } from "./SidebarData";
 import SubMenu from "./SubMenu";
 import { IconContext } from "react-icons/lib";
+import { useLocation } from "react-router-dom";
 
 const Nav = styled.div`
   background: #fff;
@@ -50,10 +51,13 @@ const SidebarWrap = styled.div`
 `;
 
 const Sidebar = () => {
+  const location = useLocation();
   const [sidebar, setSidebar] = useState(false);
 
   const showSidebar = () => setSidebar(!sidebar);
-
+  React.useEffect(()=>{
+    console.log(location.pathname);
+  },[]);
   return (
     <>
       <IconContext.Provider value={{ color: "#737170" }}>
@@ -61,7 +65,7 @@ const Sidebar = () => {
           <NavIcon to="#">
             <FaIcons.FaBars onClick={showSidebar} />
           </NavIcon>
-          <h3>Home</h3>
+          <h3>{location.pathname.toUpperCase()}</h3>
           <NavIcon>
             <AiIcons.AiOutlineSearch />
             <AiIcons.AiFillNotification />
