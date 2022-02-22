@@ -1,26 +1,22 @@
 import React from "react";
 import { Modal, Button } from "react-bootstrap";
+import { handleShowModal } from "../redux/actions";
+import { connect } from "react-redux";
 
-const ModalComponent = (props) => {
-  const [show, setShow] = React.useState(false);
-
-  const handleClose = () => {
-    setShow(false);
-  };
-  const handleShow = () => setShow(true);
+const ModalComponent = ({ body: Component, ...props }) => {
   return (
     <>
       <Button
         disabled={props.loading === true}
-        variant={props.modalData.variant}
-        onClick={handleShow}
+        variant={props.modalData.variantButtom}
+        onClick={() => props.handleShowModal(true)}
       >
-       {props.modalData.title}
+        {props.modalData.title}
       </Button>
 
       <Modal
-        show={show}
-        onHide={handleClose}
+        show={props.show}
+        onHide={() => props.handleShowModal(false)}
         backdrop="static"
         keyboard={false}
       >
@@ -28,11 +24,33 @@ const ModalComponent = (props) => {
           <Modal.Title>{props.modalData.title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Modal
+          <Component {...props} />
+          {JSON.stringify(props.modalData.footer)}
         </Modal.Body>
+        {props.modalData.showFooter === true ? (
+          <Modal.Footer>
+            {props.modalData.footer.map((index) => (
+              <Button variant={index.variant} onClick={index.onClick}>
+                {index.content}
+              </Button>
+            ))}
+          </Modal.Footer>
+        ) : null}
       </Modal>
     </>
   );
 };
 
-export default ModalComponent;
+function mapStateToProps(state) {
+  return {
+    show: state.show,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    handleShowModal: (bool) => dispatch(handleShowModal(bool)),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ModalComponent);

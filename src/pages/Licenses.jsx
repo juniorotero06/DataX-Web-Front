@@ -3,19 +3,45 @@ import LicensesTable from "../components/LicensesTable";
 import Sidebar from "../components/SideBar";
 import ModalComponent from "../components/ModalComponent";
 
-const modalData = {
+import { handleShowModal } from "../redux/actions";
+import { connect } from "react-redux";
+
+import Form from "../components/Form";
+
+const Licenses = (props) => {
+    
+  const modalData = {
     title: "Añadir Licensia",
-    variant: "danger"
+    variantButtom: "success",
+    showFooter: true,
+    footer: [
+      {
+        variant: "success",
+        content: "Close",
+        onClick: () => {
+          props.handleShowModal(false);
+        },
+      },
+      {
+        variant: "primary",
+        content: "Test",
+      },
+    ],
+  };
+
+  return (
+    <>
+      <Sidebar />
+      <ModalComponent modalData={modalData} body={Form} />
+      <LicensesTable />
+    </>
+  );
+};
+
+function mapDispatchToProps(dispatch) {
+  return {
+    handleShowModal: (bool) => dispatch(handleShowModal(bool)),
+  };
 }
 
-const Licenses = () => {
-    return(
-        <>
-            <Sidebar/>
-            <ModalComponent modalData={modalData}/>
-            <LicensesTable/>
-        </>
-    );
-}
-
-export default Licenses;
+export default connect(null, mapDispatchToProps)(Licenses);
