@@ -6,7 +6,7 @@ import ModalComponent from "../components/ModalComponent";
 import { handleShowModal } from "../redux/actions";
 import { connect } from "react-redux";
 
-import Form from "../components/Form";
+import FormComponent from "../components/Form";
 
 const Licenses = (props) => {
     
@@ -32,7 +32,7 @@ const Licenses = (props) => {
   return (
     <>
       <Sidebar />
-      <ModalComponent modalData={modalData} body={Form} />
+      <ModalComponent modalData={modalData} body={FormComponent} />
       <LicensesTable />
     </>
   );

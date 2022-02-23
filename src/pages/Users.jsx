@@ -6,42 +6,67 @@ import ModalComponent from "../components/ModalComponent";
 import { handleShowModal } from "../redux/actions";
 import { connect } from "react-redux";
 
-import Form from "../components/Form";
+import FormComponent from "../components/Form";
+
+const formData = {
+  url: "http://localhost:3001/api/users/store",
+  initialValues: {
+    name: "",
+    email: "",
+  },
+  fields: [
+    {
+      label: "Nombre: ",
+      htmlFor: "name",
+      name: "name",
+      type: "text",
+    },
+    {
+      label: "Email: ",
+      htmlFor: "email",
+      name: "email",
+      type: "email",
+    },
+  ],
+};
 
 const Users = (props) => {
+  const modalData = {
+    title: "Añadir Usuario",
+    variantButtom: "success",
+    showFooter: true,
+    footer: [
+      {
+        variant: "secondary",
+        content: "Close",
+        onClick: () => {
+          props.handleShowModal(false);
+        },
+      },
+      {
+        variant: "primary",
+        content: "Submit",
+      },
+    ],
+  };
 
-    const modalData = {
-        title: "Añadir Usuario",
-        variantButtom: "success",
-        showFooter: true,
-        footer: [
-          {
-            variant: "success",
-            content: "Close",
-            onClick: () => {
-              props.handleShowModal(false)
-            }
-          },
-          {
-            variant: "danger",
-            content: "Accept",
-          },
-        ],
-      };
-      
+  const formAux = () => {
+    return <FormComponent formData={formData}/>;
+  };
+
   return (
     <>
       <Sidebar />
-      <ModalComponent modalData={modalData} body={Form} />
+      <ModalComponent modalData={modalData} body={formAux} />
       <UsersTable />
     </>
   );
 };
 
 function mapDispatchToProps(dispatch) {
-    return {
-      handleShowModal: (bool) => dispatch(handleShowModal(bool)),
-    };
-  }
+  return {
+    handleShowModal: (bool) => dispatch(handleShowModal(bool)),
+  };
+}
 
 export default connect(null, mapDispatchToProps)(Users);
