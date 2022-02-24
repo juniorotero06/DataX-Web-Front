@@ -28,8 +28,8 @@ export function singOut() {
 export function handleShowModal(bool) {
   return {
     type: HANDLE_SHOW,
-    payload: bool
-  }
+    payload: bool,
+  };
 }
 
 export { SET_TOKEN, HANDLE_SHOW };

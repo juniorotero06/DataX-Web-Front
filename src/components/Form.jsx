@@ -1,11 +1,43 @@
-import React from 'react';
+import React from "react";
+import { Formik, Field, Form } from "formik";
+import { Button } from "react-bootstrap";
 
-const Form = () => {
-    return (
-        <>
-            <h1>Formulario</h1>
-        </>
-    );
+import { connect } from "react-redux";
+
+import { postRequest } from "../utils/Request";
+
+const FormComponent = (props) => {
+  return (
+    <>
+      <h3>Formulario</h3>
+      <Formik
+        initialValues={props.formData.initialValues}
+        onSubmit={async (values) => {
+          console.log(values);
+          await postRequest(props.formData.url, values, props.authToken);
+        }}
+      >
+        <Form>
+          {props.formData.fields.map((index) => (
+            <>
+              <label htmlFor={index.htmlFor}>{index.label}</label>
+              <Field name={index.name} type={index.type} />
+              <p>&nbsp;</p>
+            </>
+          ))}
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
+        </Form>
+      </Formik>
+    </>
+  );
+};
+
+function mapStateToProps(state) {
+  return {
+    authToken: state.authToken,
+  };
 }
 
-export default Form;
+export default connect(mapStateToProps)(FormComponent);

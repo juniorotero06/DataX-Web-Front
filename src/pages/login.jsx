@@ -20,7 +20,7 @@ function Login(props) {
 
   const iniciarSesion = async (user, password) => {
     try {
-      const res = await axios
+       await axios
         .post(
           "http://localhost:3001/api/auth/login",
           {
