@@ -5,7 +5,7 @@ import axios from "axios";
 
 const TableComponent = (props) => {
   const [content, setContent] = React.useState([]);
-
+  
   const request = async () => {
     try {
       await axios
@@ -24,24 +24,36 @@ const TableComponent = (props) => {
     }
   };
 
+  const mapKeys = (object) => {
+    let response = [];
+    for (let i in object) {
+      response.push(object[i]);
+    }
+    return response.map((i) => {
+        return <td>{String(i)}</td>;
+    })
+  };
+
   React.useEffect(() => {
     request();
-    console.log("content:", content);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <>
-      <Table responsive>
+      <Table responsive="sm">
         <thead>
-          {props.tableData.head.map((index) => (
-            <th key={index}>{index.tableHead}</th>
-          ))}
+          <tr>
+            {props.tableData.head.map((index) => (
+              <th>{index.tableHead}</th>
+            ))}
+            <th>Acciones</th>
+          </tr>
         </thead>
         <tbody>
           {content.map((index) => (
             <tr>
-              <td>{index.id}</td>
+              {mapKeys(index)}
             </tr>
           ))}
         </tbody>

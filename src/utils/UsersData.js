@@ -41,7 +41,7 @@ export const formData = {
   };
 
   export const tableData = {
-    url: "http://localhost:3001/api/users?page=0&size=2",
+    url: "http://localhost:3001/api/users?page=0&size=10",
     head: [
       {
         tableHead: "Id"
@@ -56,10 +56,16 @@ export const formData = {
         tableHead: "Password"
       },
       {
+        tableHead: "Activo"
+      },
+      {
         tableHead: "Email"
       },
       {
-        tableHead: "Acciones"
+        tableHead: "Fecha de creación"
+      },
+      {
+        tableHead: "Fecha de actualización"
       }
     ]
   }
