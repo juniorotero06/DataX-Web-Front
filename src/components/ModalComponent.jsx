@@ -29,7 +29,7 @@ const ModalComponent = ({ body: Component, ...props }) => {
         {props.modalData.showFooter === true ? (
           <Modal.Footer>
             {props.modalData.footer.map((index) => (
-              <Button variant={index.variant} type={index.type} onClick={index.onClick}>
+              <Button key={index} variant={index.variant} type={index.type} onClick={index.onClick}>
                 {index.content}
               </Button>
             ))}

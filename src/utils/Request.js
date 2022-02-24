@@ -10,9 +10,9 @@ export async function postRequest(url, options, token) {
             },
           })
           .then(() => {
-            alert("Datos Registrados");
+           console.log("Datos Registrados");
           });
       } catch (error) {
         console.log(error);
       } 
-  }
+}

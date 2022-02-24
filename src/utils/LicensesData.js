@@ -66,4 +66,4 @@ export const formData = {
         type: "text",
       }
     ]
-  }
+  };

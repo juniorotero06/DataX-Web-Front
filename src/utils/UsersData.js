@@ -40,6 +40,36 @@ export const formData = {
     ],
   };
 
+  export const tableData = {
+    url: "http://localhost:3001/api/users?page=0&size=10",
+    head: [
+      {
+        tableHead: "Id"
+      },
+      {
+        tableHead: "Nombre"
+      },
+      {
+        tableHead: "Apellido"
+      },
+      {
+        tableHead: "Password"
+      },
+      {
+        tableHead: "Activo"
+      },
+      {
+        tableHead: "Email"
+      },
+      {
+        tableHead: "Fecha de creación"
+      },
+      {
+        tableHead: "Fecha de actualización"
+      }
+    ]
+  }
+
 //   modalData.footer = [
 //     {
 //       variant: "secondary",

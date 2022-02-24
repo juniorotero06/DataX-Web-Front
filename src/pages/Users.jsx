@@ -1,10 +1,12 @@
 import React from "react";
-import UsersTable from "../components/UsersTable";
 import Sidebar from "../components/SideBar";
 import ModalComponent from "../components/ModalComponent";
 import FormComponent from "../components/Form";
+import TableComponent from "../components/TableComponent";
 
-import {formData, modalData} from "../utils/UsersData"
+import { formData, modalData, tableData } from "../utils/UsersData"
+
+
 
 const Users = () => {
 
@@ -16,7 +18,7 @@ const Users = () => {
     <>
       <Sidebar />
       <ModalComponent modalData={modalData} body={formAux} />
-      <UsersTable />
+      <TableComponent tableData={tableData}/>
     </>
   );
 };

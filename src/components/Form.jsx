@@ -20,8 +20,8 @@ const FormComponent = (props) => {
         <Form>
           {props.formData.fields.map((index) => (
             <>
-              <label htmlFor={index.htmlFor}>{index.label}</label>
-              <Field name={index.name} type={index.type} />
+              <label key={index} htmlFor={index.htmlFor}>{index.label}</label>
+              <Field key={index} name={index.name} type={index.type} />
               <p>&nbsp;</p>
             </>
           ))}
