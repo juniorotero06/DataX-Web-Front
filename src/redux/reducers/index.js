@@ -1,7 +1,7 @@
 import { SET_TOKEN, HANDLE_SHOW } from "../actions";
 const initialState = {
   authToken: null,
-  show: false
+  show: false,
 };
 
 function rootReducer(state = initialState, action) {

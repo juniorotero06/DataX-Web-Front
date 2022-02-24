@@ -25,12 +25,11 @@ const ModalComponent = ({ body: Component, ...props }) => {
         </Modal.Header>
         <Modal.Body>
           <Component {...props} />
-          {JSON.stringify(props.modalData.footer)}
         </Modal.Body>
         {props.modalData.showFooter === true ? (
           <Modal.Footer>
             {props.modalData.footer.map((index) => (
-              <Button variant={index.variant} onClick={index.onClick}>
+              <Button variant={index.variant} type={index.type} onClick={index.onClick}>
                 {index.content}
               </Button>
             ))}

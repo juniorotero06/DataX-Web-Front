@@ -8,33 +8,11 @@ import { connect } from "react-redux";
 
 import FormComponent from "../components/Form";
 
-const formData = {
-  url: "http://localhost:3001/api/users/store",
-  initialValues: {
-    name: "",
-    email: "",
-  },
-  fields: [
-    {
-      label: "Nombre: ",
-      htmlFor: "name",
-      name: "name",
-      type: "text",
-    },
-    {
-      label: "Email: ",
-      htmlFor: "email",
-      name: "email",
-      type: "email",
-    },
-  ],
-};
-
 const Users = (props) => {
   const modalData = {
     title: "Añadir Usuario",
     variantButtom: "success",
-    showFooter: true,
+    showFooter: false,
     footer: [
       {
         variant: "secondary",
@@ -43,13 +21,45 @@ const Users = (props) => {
           props.handleShowModal(false);
         },
       },
-      {
-        variant: "primary",
-        content: "Submit",
-      },
     ],
   };
 
+  const formData = {
+    url: "http://localhost:3001/api/users/store",
+    initialValues: {
+      name: "",
+      lastname: "",
+      password: "",
+      email: "",
+    },
+    fields: [
+      {
+        label: "Nombre: ",
+        htmlFor: "name",
+        name: "name",
+        type: "text",
+      },
+      {
+        label: "Apellido: ",
+        htmlFor: "lastname",
+        name: "lastname",
+        type: "text",
+      },
+      {
+        label: "Email: ",
+        htmlFor: "email",
+        name: "email",
+        type: "email",
+      },
+      {
+        label: "Password: ",
+        htmlFor: "password",
+        name: "password",
+        type: "password",
+      },
+    ],
+  };
+  
   const formAux = () => {
     return <FormComponent formData={formData}/>;
   };
