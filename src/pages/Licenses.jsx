@@ -1,10 +1,10 @@
 import React from "react";
-import LicensesTable from "../components/LicensesTable";
 import Sidebar from "../components/SideBar";
 import ModalComponent from "../components/ModalComponent";
 import FormComponent from "../components/Form";
+import TableComponent from "../components/TableComponent";
 
-import { modalData, formData } from "../utils/LicensesData";
+import { modalData, formData, tableData } from "../utils/LicensesData";
 
 const Licenses = () => {
   
@@ -16,7 +16,7 @@ const Licenses = () => {
     <>
       <Sidebar />
       <ModalComponent modalData={modalData} body={formAux} />
-      <LicensesTable />
+      <TableComponent tableData={tableData}/>
     </>
   );
 };
