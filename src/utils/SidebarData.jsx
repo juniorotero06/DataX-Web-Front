@@ -24,8 +24,8 @@ export const SidebarData = [
     iconOpened: <RiIcons.RiArrowUpSFill />,
   },
   {
-    title: 'Roles y Asociaciones',
-    path: '/pivot',
+    title: 'Asociaciones',
+    path: '/asociaciones',
     icon: <IoIcons.IoIosPaper />,
     iconClosed: <RiIcons.RiArrowDownSFill />,
     iconOpened: <RiIcons.RiArrowUpSFill />,
