@@ -5,7 +5,7 @@ import axios from "axios";
 
 const TableComponent = (props) => {
   const [content, setContent] = React.useState([]);
-  
+
   const request = async () => {
     try {
       await axios
@@ -30,8 +30,8 @@ const TableComponent = (props) => {
       response.push(object[i]);
     }
     return response.map((i) => {
-        return <td>{String(i)}</td>;
-    })
+      return <td>{String(i)}</td>;
+    });
   };
 
   React.useEffect(() => {
@@ -47,14 +47,11 @@ const TableComponent = (props) => {
             {props.tableData.head.map((index) => (
               <th>{index.tableHead}</th>
             ))}
-            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
           {content.map((index) => (
-            <tr>
-              {mapKeys(index)}
-            </tr>
+            <tr>{mapKeys(index)}</tr>
           ))}
         </tbody>
       </Table>
