@@ -18,6 +18,7 @@ export const modalDelete = {
 
 export const formData = {
   url: "http://localhost:3001/api/licenses/store",
+  action: "create",
   initialValues: {
     companyName: "",
     address: "",
@@ -82,6 +83,7 @@ export const formData = {
 
 export const formUpdateData = {
   url: "http://localhost:3001/api/licenses/",
+  action: "get",
   initialValues: {
     id: "",
   },
@@ -97,6 +99,7 @@ export const formUpdateData = {
 
 export const formDeleteData = {
   url: "http://localhost:3001/api/licenses/",
+  action: "delete",
   initialValues: {
     id: "",
   },

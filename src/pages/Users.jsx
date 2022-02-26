@@ -24,10 +24,10 @@ const Users = () => {
     return <FormComponent formData={formData} />;
   };
   const formUpdate = () => {
-    return <ModificationForm formMData={formUpdateData} />;
+    return <ModificationForm formData={formUpdateData} />;
   };
   const formDelete = () => {
-    return <ModificationForm formMData={formDeleteData} />;
+    return <ModificationForm formData={formDeleteData} />;
   };
 
   return (

@@ -18,6 +18,7 @@ export const modalDelete = {
 
 export const formData = {
   url: "http://localhost:3001/api/pivot/store",
+  action: "create",
   initialValues: {
     UserId: "",
     RolId: "",
@@ -47,6 +48,7 @@ export const formData = {
 
 export const formUpdateData = {
   url: "http://localhost:3001/api/pivot/",
+  action: "get",
   initialValues: {
     id: "",
   },
@@ -62,6 +64,7 @@ export const formUpdateData = {
 
 export const formDeleteData = {
   url: "http://localhost:3001/api/pivot/",
+  action: "delete",
   initialValues: {
     id: "",
   },

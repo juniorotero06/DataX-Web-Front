@@ -1,5 +1,5 @@
 const SET_TOKEN = "SET_TOKEN";
-const HANDLE_SHOW = "HANDLE_SHOW";
+const SAVE_ID = "SAVE_ID";
 
 export function setToken(token) {
   return {
@@ -25,11 +25,11 @@ export function singOut() {
   };
 }
 
-export function handleShowModal(bool) {
+export function saveId(id) {
   return {
-    type: HANDLE_SHOW,
-    payload: bool,
+    type: SAVE_ID,
+    payload: id,
   };
 }
 
-export { SET_TOKEN, HANDLE_SHOW };
+export { SET_TOKEN, SAVE_ID };
