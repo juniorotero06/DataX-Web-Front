@@ -1,7 +1,7 @@
-import { SET_TOKEN, HANDLE_SHOW } from "../actions";
+import { SET_TOKEN, SAVE_ID } from "../actions";
 const initialState = {
   authToken: null,
-  show: false,
+  id: "",
 };
 
 function rootReducer(state = initialState, action) {
@@ -11,11 +11,11 @@ function rootReducer(state = initialState, action) {
       authToken: action.payload,
     };
   }
-  if (action.type === HANDLE_SHOW) {
+  if (action.type === SAVE_ID) {
     return {
       ...state,
-      show: action.payload
-    }
+      id: action.payload,
+    };
   }
   return state;
 }
