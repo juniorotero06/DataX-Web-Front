@@ -10,12 +10,6 @@ export const modalUpdate = {
   showFooter: false,
 };
 
-export const modalDelete = {
-  title: "Borrar",
-  variantButtom: "danger",
-  showFooter: false,
-};
-
 export const formData = {
   url: "http://localhost:3001/api/licenses/store",
   action: "create",
@@ -83,32 +77,55 @@ export const formData = {
 
 export const formUpdateData = {
   url: "http://localhost:3001/api/licenses/",
-  action: "get",
-  initialValues: {
-    id: "",
-  },
+  action: "update",
   fields: [
     {
-      label: "Ingrese Id de la licensia a modificar: ",
-      htmlFor: "id",
-      name: "id",
-      type: "id",
+      label: "Compañia: ",
+      htmlFor: "companyName",
+      name: "companyName",
+      type: "text",
     },
-  ],
-};
-
-export const formDeleteData = {
-  url: "http://localhost:3001/api/licenses/",
-  action: "delete",
-  initialValues: {
-    id: "",
-  },
-  fields: [
     {
-      label: "Ingrese Id de la licensia a Borrar: ",
-      htmlFor: "id",
-      name: "id",
-      type: "id",
+      label: "Dirección: ",
+      htmlFor: "address",
+      name: "address",
+      type: "text",
+    },
+    {
+      label: "Email: ",
+      htmlFor: "email",
+      name: "email",
+      type: "email",
+    },
+    {
+      label: "Teléfono: ",
+      htmlFor: "phone",
+      name: "phone",
+      type: "text",
+    },
+    {
+      label: "Host: ",
+      htmlFor: "host",
+      name: "host",
+      type: "text",
+    },
+    {
+      label: "Usuario BD: ",
+      htmlFor: "bdUser",
+      name: "bdUser",
+      type: "text",
+    },
+    {
+      label: "Contraseña BD: ",
+      htmlFor: "bdPass",
+      name: "bdPass",
+      type: "text",
+    },
+    {
+      label: "Nombre BD: ",
+      htmlFor: "bdName",
+      name: "bdName",
+      type: "text",
     },
   ],
 };

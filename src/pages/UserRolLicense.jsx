@@ -3,31 +3,34 @@ import Sidebar from "../components/SideBar";
 import ModalComponent from "../components/ModalComponent";
 import FormComponent from "../components/Form";
 import TableComponent from "../components/TableComponent";
-import ModificationForm from "../components/ModificationForm";
 import { Button } from "react-bootstrap";
 import {
   modalData,
   formData,
   tableData,
   modalUpdate,
-  modalDelete,
   formUpdateData,
-  formDeleteData,
 } from "../utils/PivotData";
 
-const UserRolLicense = () => {
+import { connect } from "react-redux";
+
+const UserRolLicense = (props) => {
   const [stateModalCreate, setModalCreate] = React.useState(false);
   const [stateModalUpdate, setModalUpdate] = React.useState(false);
-  const [stateModalDelete, setModalDelete] = React.useState(false);
+
+  formUpdateData.initialValues = {
+    UserId: props.values.UserId,
+    RolId: props.values.RolId,
+    LicenseId: props.values.LicenseId,
+  };
+
   const formAux = () => {
     return <FormComponent formData={formData} />;
   };
   const formUpdate = () => {
-    return <ModificationForm formData={formUpdateData} />;
+    return <FormComponent formData={formUpdateData} />;
   };
-  const formDelete = () => {
-    return <ModificationForm formData={formDeleteData} />;
-  };
+
   return (
     <>
       <Sidebar />
@@ -46,38 +49,22 @@ const UserRolLicense = () => {
         state={stateModalCreate}
         setState={setModalCreate}
       />
-      {/* Update */}
-      <Button
-        //disabled={props.loading === true}
-        variant={modalUpdate.variantButtom}
-        onClick={() => setModalUpdate(!stateModalUpdate)}
-      >
-        {modalUpdate.title}
-      </Button>
-      <ModalComponent
+      <TableComponent
         modalData={modalUpdate}
-        body={formUpdate}
+        tableData={tableData}
+        formData={formUpdate}
+        formUpdateData={formUpdateData}
         state={stateModalUpdate}
         setState={setModalUpdate}
       />
-      {/* Delete */}
-      <Button
-        //disabled={props.loading === true}
-        variant={modalDelete.variantButtom}
-        onClick={() => setModalDelete(!stateModalDelete)}
-      >
-        {modalDelete.title}
-      </Button>
-      <ModalComponent
-        modalData={modalDelete}
-        body={formDelete}
-        state={stateModalDelete}
-        setState={setModalDelete}
-      />
-
-      <TableComponent tableData={tableData} />
     </>
   );
 };
 
-export default UserRolLicense;
+function mapStateToProps(state) {
+  return {
+    values: state.values,
+  };
+}
+
+export default connect(mapStateToProps)(UserRolLicense);

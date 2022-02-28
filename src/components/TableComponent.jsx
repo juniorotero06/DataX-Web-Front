@@ -1,9 +1,11 @@
 import React from "react";
-import { Table } from "react-bootstrap";
+import { Table, Button } from "react-bootstrap";
+import ModalComponent from "./ModalComponent";
+import { valuesToUpdate } from "../redux/actions";
 import { connect } from "react-redux";
 import axios from "axios";
 
-const TableComponent = (props) => {
+const TableComponent = ({ state, setState, ...props }) => {
   const [content, setContent] = React.useState([]);
 
   const request = async () => {
@@ -34,6 +36,25 @@ const TableComponent = (props) => {
     });
   };
 
+  const onClickUpdate = async (id) => {
+    const url = props.formUpdateData.url + String(id);
+    await axios
+      .get(url, {
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": props.authToken,
+        },
+      })
+      .then(async (obj) => {
+        const dataDb = await obj.data;
+        console.log("dataDb", dataDb);
+        props.valuesToUpdate(dataDb);
+      })
+      .catch((error) => console.log(error));
+
+    setState(!state);
+  };
+
   React.useEffect(() => {
     request();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -47,11 +68,29 @@ const TableComponent = (props) => {
             {props.tableData.head.map((index) => (
               <th>{index.tableHead}</th>
             ))}
+            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
           {content.map((index) => (
-            <tr>{mapKeys(index)}</tr>
+            <tr>
+              {mapKeys(index)}
+              <td>
+                <Button
+                  variant={props.modalData.variantButtom}
+                  onClick={() => onClickUpdate(index.id)}
+                >
+                  {props.modalData.title}
+                </Button>
+                <ModalComponent
+                  modalData={props.modalData}
+                  body={props.formData}
+                  state={state}
+                  setState={setState}
+                />
+                <Button variant="danger">Borrar</Button>
+              </td>
+            </tr>
           ))}
         </tbody>
       </Table>
@@ -65,4 +104,10 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(TableComponent);
+function mapDispatchToProps(dispatch) {
+  return {
+    valuesToUpdate: (payload) => dispatch(valuesToUpdate(payload)),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TableComponent);

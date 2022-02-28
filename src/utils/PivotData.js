@@ -10,12 +10,6 @@ export const modalUpdate = {
   showFooter: false,
 };
 
-export const modalDelete = {
-  title: "Borrar",
-  variantButtom: "danger",
-  showFooter: false,
-};
-
 export const formData = {
   url: "http://localhost:3001/api/pivot/store",
   action: "create",
@@ -48,32 +42,25 @@ export const formData = {
 
 export const formUpdateData = {
   url: "http://localhost:3001/api/pivot/",
-  action: "get",
-  initialValues: {
-    id: "",
-  },
+  action: "update",
   fields: [
     {
-      label: "Ingrese Id de la asociasión a modificar: ",
-      htmlFor: "id",
-      name: "id",
-      type: "id",
+      label: "ID del usuario: ",
+      htmlFor: "UserId",
+      name: "UserId",
+      type: "text",
     },
-  ],
-};
-
-export const formDeleteData = {
-  url: "http://localhost:3001/api/pivot/",
-  action: "delete",
-  initialValues: {
-    id: "",
-  },
-  fields: [
     {
-      label: "Ingrese Id de la asociación a Borrar: ",
-      htmlFor: "id",
-      name: "id",
-      type: "id",
+      label: "ID del rol: ",
+      htmlFor: "RolId",
+      name: "RolId",
+      type: "text",
+    },
+    {
+      label: "ID de la Licensia: ",
+      htmlFor: "LicenseId",
+      name: "LicenseId",
+      type: "text",
     },
   ],
 };
