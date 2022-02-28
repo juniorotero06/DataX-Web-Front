@@ -19,12 +19,16 @@ export async function postRequest(url, options, token) {
 
 export async function getByIdFunction(url, id, token) {
   try {
-    await axios.get(url + id, {
-      headers: {
-        "Content-Type": "application/json",
-        "auth-token": token,
-      },
-    });
+    await axios
+      .get(url + id, {
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": token,
+        },
+      })
+      .then((obj) => {
+        return obj.data;
+      });
   } catch (error) {
     console.log(error);
   }

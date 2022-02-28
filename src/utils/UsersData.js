@@ -10,12 +10,6 @@ export const modalUpdate = {
   showFooter: false,
 };
 
-export const modalDelete = {
-  title: "Borrar",
-  variantButtom: "danger",
-  showFooter: false,
-};
-
 export const formData = {
   url: "http://localhost:3001/api/users/store",
   action: "create",
@@ -55,32 +49,31 @@ export const formData = {
 
 export const formUpdateData = {
   url: "http://localhost:3001/api/users/",
-  action: "get",
-  initialValues: {
-    id: "",
-  },
+  action: "update",
   fields: [
     {
-      label: "Ingrese Id del usuario a modificar: ",
-      htmlFor: "id",
-      name: "id",
-      type: "id",
+      label: "Nombre: ",
+      htmlFor: "name",
+      name: "name",
+      type: "text",
     },
-  ],
-};
-
-export const formDeleteData = {
-  url: "http://localhost:3001/api/users/",
-  action: "delete",
-  initialValues: {
-    id: "",
-  },
-  fields: [
     {
-      label: "Ingrese Id del usuario a Borrar: ",
-      htmlFor: "id",
-      name: "id",
-      type: "id",
+      label: "Apellido: ",
+      htmlFor: "lastname",
+      name: "lastname",
+      type: "text",
+    },
+    {
+      label: "Email: ",
+      htmlFor: "email",
+      name: "email",
+      type: "email",
+    },
+    {
+      label: "Password: ",
+      htmlFor: "password",
+      name: "password",
+      type: "password",
     },
   ],
 };
@@ -125,14 +118,3 @@ export const tableData = {
 //       },
 //     },
 //   ]
-
-// import { handleShowModal } from "../redux/actions";
-// import { connect } from "react-redux";
-
-// function mapDispatchToProps(dispatch) {
-//     return {
-//       handleShowModal: (bool) => dispatch(handleShowModal(bool)),
-//     };
-//   }
-
-//   export default connect(null, mapDispatchToProps)(Users);

@@ -1,5 +1,6 @@
 const SET_TOKEN = "SET_TOKEN";
 const SAVE_ID = "SAVE_ID";
+const VALUES = "VALUES";
 
 export function setToken(token) {
   return {
@@ -32,4 +33,11 @@ export function saveId(id) {
   };
 }
 
-export { SET_TOKEN, SAVE_ID };
+export function valuesToUpdate(payload) {
+  return {
+    type: VALUES,
+    payload: payload,
+  };
+}
+
+export { SET_TOKEN, SAVE_ID, VALUES };
