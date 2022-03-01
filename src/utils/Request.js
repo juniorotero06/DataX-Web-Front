@@ -34,9 +34,9 @@ export async function getByIdFunction(url, id, token) {
   }
 }
 
-export async function updateRequest(url, id, options, token) {
+export async function updateRequest(url, options, token) {
   try {
-    await axios.put(url + id, options, {
+    await axios.put(url, options, {
       headers: {
         "Content-Type": "application/json",
         "auth-token": token,
@@ -47,9 +47,9 @@ export async function updateRequest(url, id, options, token) {
   }
 }
 
-export async function deleteRequest(url, id, token) {
+export async function deleteRequest(url, token) {
   try {
-    await axios.delete(url + id, {
+    await axios.delete(url, {
       headers: {
         "Content-Type": "application/json",
         "auth-token": token,

@@ -1,8 +1,8 @@
 import { SET_TOKEN, SAVE_ID, VALUES } from "../actions";
 const initialState = {
   authToken: null,
-  id: "",
-  values: null,
+  id: null,
+  values: [],
 };
 
 function rootReducer(state = initialState, action) {

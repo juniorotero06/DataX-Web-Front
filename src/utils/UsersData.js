@@ -69,12 +69,6 @@ export const formUpdateData = {
       name: "email",
       type: "email",
     },
-    {
-      label: "Password: ",
-      htmlFor: "password",
-      name: "password",
-      type: "password",
-    },
   ],
 };
 
