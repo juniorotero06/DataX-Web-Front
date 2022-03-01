@@ -116,12 +116,6 @@ export const formUpdateData = {
       type: "text",
     },
     {
-      label: "Contraseña BD: ",
-      htmlFor: "bdPass",
-      name: "bdPass",
-      type: "text",
-    },
-    {
       label: "Nombre BD: ",
       htmlFor: "bdName",
       name: "bdName",

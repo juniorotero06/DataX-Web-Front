@@ -3,6 +3,7 @@ import Sidebar from "../components/SideBar";
 import ModalComponent from "../components/ModalComponent";
 import FormComponent from "../components/Form";
 import TableComponent from "../components/TableComponent";
+import SimpleTable from "../components/SimpleTable";
 import { Button } from "react-bootstrap";
 import {
   modalData,
@@ -10,6 +11,8 @@ import {
   tableData,
   modalUpdate,
   formUpdateData,
+  modalRoles,
+  tableRol,
 } from "../utils/PivotData";
 
 import { connect } from "react-redux";
@@ -17,6 +20,7 @@ import { connect } from "react-redux";
 const UserRolLicense = (props) => {
   const [stateModalCreate, setModalCreate] = React.useState(false);
   const [stateModalUpdate, setModalUpdate] = React.useState(false);
+  const [stateModalRol, setModalRol] = React.useState(false);
 
   formUpdateData.initialValues = {
     UserId: props.values.UserId,
@@ -24,11 +28,24 @@ const UserRolLicense = (props) => {
     LicenseId: props.values.LicenseId,
   };
 
+  modalRoles.footer = [
+    {
+      variant: "secondary",
+      content: "Close",
+      onClick: () => {
+        setModalRol(!stateModalRol);
+      },
+    },
+  ];
+
   const formAux = () => {
     return <FormComponent formData={formData} />;
   };
   const formUpdate = () => {
     return <FormComponent formData={formUpdateData} />;
+  };
+  const tableRols = () => {
+    return <SimpleTable tableData={tableRol} />;
   };
 
   return (
@@ -48,6 +65,21 @@ const UserRolLicense = (props) => {
         body={formAux}
         state={stateModalCreate}
         setState={setModalCreate}
+      />
+
+      {/* Roles */}
+      <Button
+        //disabled={props.loading === true}
+        variant={modalRoles.variantButtom}
+        onClick={() => setModalRol(!stateModalRol)}
+      >
+        {modalRoles.title}
+      </Button>
+      <ModalComponent
+        modalData={modalRoles}
+        body={tableRols}
+        state={stateModalRol}
+        setState={setModalRol}
       />
       <TableComponent
         modalData={modalUpdate}

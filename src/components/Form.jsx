@@ -5,12 +5,7 @@ import { Button } from "react-bootstrap";
 import { saveId } from "../redux/actions";
 import { connect } from "react-redux";
 
-import {
-  postRequest,
-  updateRequest,
-  getByIdFunction,
-  deleteRequest,
-} from "../utils/Request";
+import { postRequest, updateRequest } from "../utils/Request";
 
 const FormComponent = (props) => {
   const handleSubmit = async (values) => {
@@ -18,21 +13,10 @@ const FormComponent = (props) => {
       case "create":
         await postRequest(props.formData.url, values, props.authToken);
         break;
-      case "get":
-        await props.saveId(values);
-        await getByIdFunction(props.formData.url, values, props.authToken);
-        break;
       case "update":
-        await updateRequest(
-          props.formData.url,
-          props.id,
-          values,
-          props.authToken
-        );
-        break;
-      case "delete":
-        await props.saveId(values);
-        await deleteRequest(props.formData.url, props.id, props.authToken);
+        const url = props.formData.url + props.id;
+        await updateRequest(url, values, props.authToken);
+        //console.log("id: ", url);
         break;
       default:
         console.log("handleSubmit: ", values);
@@ -45,8 +29,8 @@ const FormComponent = (props) => {
       <Formik
         initialValues={props.formData.initialValues}
         onSubmit={async (values) => {
-          console.log(values);
           handleSubmit(values);
+          window.location.reload();
         }}
       >
         <Form>

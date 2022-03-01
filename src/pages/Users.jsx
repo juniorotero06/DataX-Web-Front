@@ -21,7 +21,6 @@ const Users = (props) => {
   formUpdateData.initialValues = {
     name: props.values.name,
     lastname: props.values.lastname,
-    password: "",
     email: props.values.email,
   };
 

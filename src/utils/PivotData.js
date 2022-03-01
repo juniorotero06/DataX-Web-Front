@@ -88,3 +88,29 @@ export const tableData = {
     },
   ],
 };
+
+/////////////////////ROLES////////////////////////
+
+export const modalRoles = {
+  title: "Roles",
+  variantButtom: "primary",
+  showFooter: true,
+};
+
+export const tableRol = {
+  url: "http://localhost:3001/api/rols?page=0&size=10",
+  head: [
+    {
+      tableHead: "Id",
+    },
+    {
+      tableHead: "Rol",
+    },
+    {
+      tableHead: "Fecha de creación",
+    },
+    {
+      tableHead: "Fecha de actualización",
+    },
+  ],
+};

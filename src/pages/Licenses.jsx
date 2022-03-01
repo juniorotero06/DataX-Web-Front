@@ -25,7 +25,6 @@ const Licenses = (props) => {
     phone: props.values.phone,
     host: props.values.host,
     bdUser: props.values.bdUser,
-    bdPass: "",
     bdName: props.values.bdName,
   };
 
