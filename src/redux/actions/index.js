@@ -1,6 +1,9 @@
 const SET_TOKEN = "SET_TOKEN";
 const SAVE_ID = "SAVE_ID";
 const VALUES = "VALUES";
+const PAGES = "PAGES; ";
+const TOTAL_PAGES = "TOTAL_PAGES";
+const GET_CONTENT = "GET_CONTENT";
 
 export function setToken(token) {
   return {
@@ -40,4 +43,25 @@ export function valuesToUpdate(payload) {
   };
 }
 
-export { SET_TOKEN, SAVE_ID, VALUES };
+export function changePage(payload) {
+  return {
+    type: PAGES,
+    payload: payload,
+  };
+}
+
+export function getContent(payload) {
+  return {
+    type: GET_CONTENT,
+    payload: payload,
+  };
+}
+
+export function getTotalPages(payload) {
+  return {
+    type: TOTAL_PAGES,
+    payload: payload,
+  };
+}
+
+export { SET_TOKEN, SAVE_ID, VALUES, PAGES, TOTAL_PAGES, GET_CONTENT };

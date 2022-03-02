@@ -73,7 +73,6 @@ export const formUpdateData = {
 };
 
 export const tableData = {
-  url: "http://localhost:3001/api/users?page=0&size=10",
   head: [
     {
       tableHead: "Id",

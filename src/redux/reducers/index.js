@@ -1,8 +1,18 @@
-import { SET_TOKEN, SAVE_ID, VALUES } from "../actions";
+import {
+  SET_TOKEN,
+  SAVE_ID,
+  VALUES,
+  PAGES,
+  TOTAL_PAGES,
+  GET_CONTENT,
+} from "../actions";
 const initialState = {
   authToken: null,
   id: null,
   values: [],
+  pages: 0,
+  totalPages: 1,
+  content: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -22,6 +32,24 @@ function rootReducer(state = initialState, action) {
     return {
       ...state,
       values: action.payload,
+    };
+  }
+  if (action.type === PAGES) {
+    return {
+      ...state,
+      pages: action.payload,
+    };
+  }
+  if (action.type === TOTAL_PAGES) {
+    return {
+      ...state,
+      totalPages: action.payload,
+    };
+  }
+  if (action.type === GET_CONTENT) {
+    return {
+      ...state,
+      content: action.payload,
     };
   }
   return state;
