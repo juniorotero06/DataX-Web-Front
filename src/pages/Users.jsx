@@ -3,6 +3,7 @@ import Sidebar from "../components/SideBar";
 import ModalComponent from "../components/ModalComponent";
 import FormComponent from "../components/Form";
 import TableComponent from "../components/TableComponent";
+import ButtonTable from "../components/ButtonTable";
 import { Button } from "react-bootstrap";
 import {
   modalData,
@@ -17,6 +18,11 @@ import { connect } from "react-redux";
 const Users = (props) => {
   const [stateModalCreate, setModalCreate] = React.useState(false);
   const [stateModalUpdate, setModalUpdate] = React.useState(false);
+
+  const [page, setPage] = React.useState(0);
+
+  tableData.url = `http://localhost:3001/api/users?page=${page}&size=1`;
+  //tableData.url = `http://localhost:3001/api/users?page=0&size=10`;
 
   formUpdateData.initialValues = {
     name: props.values.name,
@@ -57,6 +63,7 @@ const Users = (props) => {
         state={stateModalUpdate}
         setState={setModalUpdate}
       />
+      <ButtonTable page={page} setPage={setPage} />
     </>
   );
 };

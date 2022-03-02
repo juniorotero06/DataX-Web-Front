@@ -1,7 +1,12 @@
 import React from "react";
-import { Table, Button } from "react-bootstrap";
 import ModalComponent from "./ModalComponent";
-import { valuesToUpdate, saveId } from "../redux/actions";
+import { Table, Button } from "react-bootstrap";
+import {
+  valuesToUpdate,
+  saveId,
+  getTotalPages,
+  getContent,
+} from "../redux/actions";
 import { connect } from "react-redux";
 import { deleteRequest } from "../utils/Request";
 import axios from "axios";
@@ -9,7 +14,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 const TableComponent = ({ state, setState, ...props }) => {
-  const [content, setContent] = React.useState([]);
+  //const [content, setContent] = React.useState([]);
 
   const request = async () => {
     try {
@@ -22,7 +27,8 @@ const TableComponent = ({ state, setState, ...props }) => {
         })
         .then(async (obj) => {
           const dataDb = await obj.data;
-          setContent(dataDb.content);
+          props.getTotalPages(dataDb.totalPages);
+          props.getContent(dataDb.content);
         });
     } catch (error) {
       console.log(error);
@@ -83,8 +89,9 @@ const TableComponent = ({ state, setState, ...props }) => {
 
   React.useLayoutEffect(() => {
     request();
+    console.log("ejecutando");
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [props.pages]);
 
   return (
     <>
@@ -98,7 +105,7 @@ const TableComponent = ({ state, setState, ...props }) => {
           </tr>
         </thead>
         <tbody>
-          {content.map((index) => (
+          {props.content.map((index) => (
             <tr>
               {mapKeys(index)}
               <td>
@@ -132,6 +139,8 @@ const TableComponent = ({ state, setState, ...props }) => {
 function mapStateToProps(state) {
   return {
     authToken: state.authToken,
+    content: state.content,
+    pages: state.pages,
   };
 }
 
@@ -139,6 +148,8 @@ function mapDispatchToProps(dispatch) {
   return {
     valuesToUpdate: (payload) => dispatch(valuesToUpdate(payload)),
     saveId: (id) => dispatch(saveId(id)),
+    getTotalPages: (payload) => dispatch(getTotalPages(payload)),
+    getContent: (payload) => dispatch(getContent(payload)),
   };
 }
 
