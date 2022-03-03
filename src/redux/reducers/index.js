@@ -18,6 +18,7 @@ const initialState = {
   content: [],
   loading: false,
   user: null,
+  onSearch: null,
 };
 
 function rootReducer(state = initialState, action) {
@@ -63,6 +64,12 @@ function rootReducer(state = initialState, action) {
     return {
       ...state,
       user: action.payload,
+    };
+  }
+  if (action.type === ON_SEARCH) {
+    return {
+      ...state,
+      onSearch: action.payload,
     };
   }
   if (action.type === LOADING) {

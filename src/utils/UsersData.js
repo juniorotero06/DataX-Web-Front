@@ -101,6 +101,41 @@ export const tableData = {
   ],
 };
 
+export const tableSearch = {
+  head: [
+    {
+      tableHead: "Id",
+    },
+    {
+      tableHead: "Nombre",
+    },
+    {
+      tableHead: "Apellido",
+    },
+    {
+      tableHead: "Password",
+    },
+    {
+      tableHead: "Activo",
+    },
+    {
+      tableHead: "Email",
+    },
+    {
+      tableHead: "Fecha de creación",
+    },
+    {
+      tableHead: "Fecha de actualización",
+    },
+  ],
+};
+
+export const modalSearch = {
+  title: "Buscar",
+  variantButtom: "primary",
+  showFooter: true,
+};
+
 //   modalData.footer = [
 //     {
 //       variant: "secondary",

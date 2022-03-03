@@ -16,7 +16,6 @@ const FormComponent = (props) => {
       case "update":
         const url = props.formData.url + props.id;
         await updateRequest(url, values, props.authToken);
-        //console.log("id: ", url);
         break;
       default:
         console.log("handleSubmit: ", values);

@@ -1,41 +1,45 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { onSearch } from "../redux/actions";
-import { Button, Form, FormControl } from "react-bootstrap";
+import { Formik, Field, Form } from "formik";
+import { Button } from "react-bootstrap";
+import ModalComponent from "./ModalComponent";
+import SimpleTable from "../components/SimpleTable";
 
-export function SearchBar(props) {
-  const [search, setSearch] = useState("");
+export function SearchBar({ setModal, stateModal, ...props }) {
+  const tableAux = () => {
+    return <SimpleTable tableData={props.tableSearch} />;
+  };
+
   return (
-    <div>
-      <Form
-        className="d-flex"
-        onSubmit={(e) => {
-          e.preventDefault();
-          props.onSearch(search.toLowerCase());
+    <>
+      <Formik
+        initialValues={{ search: "" }}
+        onSubmit={async (values) => {
+          setModal(!stateModal);
+          props.onSearch(values);
         }}
       >
-        <FormControl
-          type="search"
-          className="me-2"
-          aria-label="Search"
-          placeholder="Buscar..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-        <Button
-          disabled={props.loading === true}
-          variant="outline-success"
-          type="submit"
-        >
-          Buscar
-        </Button>
-      </Form>
-    </div>
+        <Form>
+          <Field name="search" type="text" />
+          <Button variant="primary" type="submit">
+            Buscar
+          </Button>
+        </Form>
+      </Formik>
+      <ModalComponent
+        modalData={props.modalSearch}
+        body={tableAux}
+        state={stateModal}
+        setState={setModal}
+      />
+    </>
   );
 }
 
 function mapStateToProps(state) {
   return {
+    authToken: state.authToken,
     loading: state.loading,
   };
 }
