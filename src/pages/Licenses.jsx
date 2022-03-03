@@ -4,6 +4,7 @@ import ModalComponent from "../components/ModalComponent";
 import FormComponent from "../components/Form";
 import TableComponent from "../components/TableComponent";
 import ButtonTable from "../components/ButtonTable";
+import SearchBar from "../components/SearchBar";
 import { Button } from "react-bootstrap";
 import {
   modalData,
@@ -43,7 +44,7 @@ const Licenses = (props) => {
   return (
     <>
       <Sidebar />
-
+      <SearchBar />
       {/* Create */}
       <Button
         disabled={props.loading === true}
@@ -58,7 +59,6 @@ const Licenses = (props) => {
         state={stateModalCreate}
         setState={setModalCreate}
       />
-
       <TableComponent
         modalData={modalUpdate}
         tableData={tableData}

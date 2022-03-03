@@ -4,6 +4,7 @@ import ModalComponent from "../components/ModalComponent";
 import FormComponent from "../components/Form";
 import TableComponent from "../components/TableComponent";
 import ButtonTable from "../components/ButtonTable";
+import SearchBar from "../components/SearchBar";
 import { Button } from "react-bootstrap";
 import {
   modalData,
@@ -40,7 +41,7 @@ const Users = (props) => {
   return (
     <>
       <Sidebar />
-
+      <SearchBar />
       {/* Create */}
       <Button
         disabled={props.loading === true}

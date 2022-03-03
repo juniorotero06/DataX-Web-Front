@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
-import { setToken } from "../redux/actions";
+import { setToken, getUser } from "../redux/actions";
 import axios from "axios";
 
 function Login(props) {
@@ -20,7 +20,7 @@ function Login(props) {
 
   const iniciarSesion = async (user, password) => {
     try {
-       await axios
+      await axios
         .post(
           "http://localhost:3001/api/auth/login",
           {
@@ -35,6 +35,8 @@ function Login(props) {
         )
         .then(async (obj) => {
           const usuarioDB = await obj.data;
+          const userNames = `${usuarioDB.name} ${usuarioDB.lastname}`;
+          props.getUser(userNames);
           props.setToken(usuarioDB.data.token);
           localStorage.setItem("token2", usuarioDB.data.token);
         });
@@ -122,6 +124,7 @@ function Login(props) {
 function mapDispatchToProps(dispatch) {
   return {
     setToken: (token) => dispatch(setToken(token)),
+    getUser: (user) => dispatch(getUser(user)),
   };
 }
 

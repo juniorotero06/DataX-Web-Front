@@ -5,6 +5,8 @@ const PAGES = "PAGES; ";
 const TOTAL_PAGES = "TOTAL_PAGES";
 const GET_CONTENT = "GET_CONTENT";
 const LOADING = "LOADING";
+const ON_SEARCH = "ON_SEARCH";
+const USER = "USER";
 
 export function setToken(token) {
   return {
@@ -71,4 +73,28 @@ export function loading() {
   };
 }
 
-export { SET_TOKEN, SAVE_ID, VALUES, PAGES, TOTAL_PAGES, GET_CONTENT, LOADING };
+export function onSearch(payload) {
+  return {
+    type: ON_SEARCH,
+    payload: payload,
+  };
+}
+
+export function getUser(user) {
+  return {
+    type: USER,
+    payload: user,
+  };
+}
+
+export {
+  SET_TOKEN,
+  SAVE_ID,
+  VALUES,
+  PAGES,
+  TOTAL_PAGES,
+  GET_CONTENT,
+  LOADING,
+  ON_SEARCH,
+  USER,
+};

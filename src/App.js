@@ -26,13 +26,16 @@ function App(props) {
     <div className="App">
       <Switch>
         <ProtectedDashboard exact path="/inicio" component={DashBoard} />
-        <ProtectedDashboard exact path="/users" component={Users} />
-        <ProtectedDashboard exact path="/licenses" component={Licenses} />
-        <ProtectedDashboard exact path="/asociaciones" component={UserRolLicense} />
+        <ProtectedDashboard exact path="/usuarios" component={Users} />
+        <ProtectedDashboard exact path="/licencias" component={Licenses} />
+        <ProtectedDashboard
+          exact
+          path="/asociaciones"
+          component={UserRolLicense}
+        />
         <Routes exact path="/register" component={Register} />
         <Routes exact path="/" component={Login} />
       </Switch>
-      
     </div>
   );
 }
