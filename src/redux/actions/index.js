@@ -4,6 +4,7 @@ const VALUES = "VALUES";
 const PAGES = "PAGES; ";
 const TOTAL_PAGES = "TOTAL_PAGES";
 const GET_CONTENT = "GET_CONTENT";
+const LOADING = "LOADING";
 
 export function setToken(token) {
   return {
@@ -64,4 +65,10 @@ export function getTotalPages(payload) {
   };
 }
 
-export { SET_TOKEN, SAVE_ID, VALUES, PAGES, TOTAL_PAGES, GET_CONTENT };
+export function loading() {
+  return {
+    type: LOADING,
+  };
+}
+
+export { SET_TOKEN, SAVE_ID, VALUES, PAGES, TOTAL_PAGES, GET_CONTENT, LOADING };

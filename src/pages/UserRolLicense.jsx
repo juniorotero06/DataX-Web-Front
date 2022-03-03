@@ -59,7 +59,7 @@ const UserRolLicense = (props) => {
 
       {/* Create */}
       <Button
-        //disabled={props.loading === true}
+        disabled={props.loading === true}
         variant={modalData.variantButtom}
         onClick={() => setModalCreate(!stateModalCreate)}
       >
@@ -74,7 +74,7 @@ const UserRolLicense = (props) => {
 
       {/* Roles */}
       <Button
-        //disabled={props.loading === true}
+        disabled={props.loading === true}
         variant={modalRoles.variantButtom}
         onClick={() => setModalRol(!stateModalRol)}
       >
@@ -86,6 +86,7 @@ const UserRolLicense = (props) => {
         state={stateModalRol}
         setState={setModalRol}
       />
+
       <TableComponent
         modalData={modalUpdate}
         tableData={tableData}
@@ -94,7 +95,12 @@ const UserRolLicense = (props) => {
         state={stateModalUpdate}
         setState={setModalUpdate}
       />
-      <ButtonTable page={page} setPage={setPage} />
+
+      <ButtonTable
+        disabled={props.loading === true}
+        page={page}
+        setPage={setPage}
+      />
     </>
   );
 };
@@ -102,6 +108,7 @@ const UserRolLicense = (props) => {
 function mapStateToProps(state) {
   return {
     values: state.values,
+    loading: state.loading,
   };
 }
 

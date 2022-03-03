@@ -46,7 +46,7 @@ const Licenses = (props) => {
 
       {/* Create */}
       <Button
-        //disabled={props.loading === true}
+        disabled={props.loading === true}
         variant={modalData.variantButtom}
         onClick={() => setModalCreate(!stateModalCreate)}
       >
@@ -58,6 +58,7 @@ const Licenses = (props) => {
         state={stateModalCreate}
         setState={setModalCreate}
       />
+
       <TableComponent
         modalData={modalUpdate}
         tableData={tableData}
@@ -66,13 +67,19 @@ const Licenses = (props) => {
         state={stateModalUpdate}
         setState={setModalUpdate}
       />
-      <ButtonTable page={page} setPage={setPage} />
+
+      <ButtonTable
+        disabled={props.loading === true}
+        page={page}
+        setPage={setPage}
+      />
     </>
   );
 };
 function mapStateToProps(state) {
   return {
     values: state.values,
+    loading: state.loading,
   };
 }
 

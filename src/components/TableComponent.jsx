@@ -1,11 +1,13 @@
 import React from "react";
 import ModalComponent from "./ModalComponent";
+import Spiner from "./Spinner";
 import { Table, Button } from "react-bootstrap";
 import {
   valuesToUpdate,
   saveId,
   getTotalPages,
   getContent,
+  loading,
 } from "../redux/actions";
 import { connect } from "react-redux";
 import { deleteRequest } from "../utils/Request";
@@ -17,6 +19,7 @@ const TableComponent = ({ state, setState, ...props }) => {
   //const [content, setContent] = React.useState([]);
 
   const request = async () => {
+    props.loading();
     try {
       await axios
         .get(props.tableData.url, {
@@ -47,6 +50,7 @@ const TableComponent = ({ state, setState, ...props }) => {
 
   const onClickUpdate = async (id) => {
     const url = props.formUpdateData.url + String(id);
+    props.loading();
     await axios
       .get(url, {
         headers: {
@@ -105,31 +109,40 @@ const TableComponent = ({ state, setState, ...props }) => {
           </tr>
         </thead>
         <tbody>
-          {props.content.map((index) => (
-            <tr>
-              {mapKeys(index)}
-              <td>
-                <Button
-                  variant={props.modalData.variantButtom}
-                  onClick={() => onClickUpdate(index.id)}
-                >
-                  {props.modalData.title}
-                </Button>
-                <ModalComponent
-                  modalData={props.modalData}
-                  body={props.formData}
-                  state={state}
-                  setState={setState}
-                />
-                <Button
-                  variant="danger"
-                  onClick={() => onClickDelete(index.id)}
-                >
-                  Borrar
-                </Button>
-              </td>
-            </tr>
-          ))}
+          {props.loadingState ? (
+            <Spiner />
+          ) : (
+            props.content.map((index) => (
+              <tr>
+                {mapKeys(index)}
+                <td>
+                  <Button
+                    variant={props.modalData.variantButtom}
+                    onClick={() => onClickUpdate(index.id)}
+                  >
+                    {props.modalData.title}
+                  </Button>
+                  {props.loadingState ? (
+                    <Spiner />
+                  ) : (
+                    <ModalComponent
+                      modalData={props.modalData}
+                      body={props.formData}
+                      state={state}
+                      setState={setState}
+                    />
+                  )}
+
+                  <Button
+                    variant="danger"
+                    onClick={() => onClickDelete(index.id)}
+                  >
+                    Borrar
+                  </Button>
+                </td>
+              </tr>
+            ))
+          )}
         </tbody>
       </Table>
     </>
@@ -141,6 +154,7 @@ function mapStateToProps(state) {
     authToken: state.authToken,
     content: state.content,
     pages: state.pages,
+    loadingState: state.loading,
   };
 }
 
@@ -150,6 +164,7 @@ function mapDispatchToProps(dispatch) {
     saveId: (id) => dispatch(saveId(id)),
     getTotalPages: (payload) => dispatch(getTotalPages(payload)),
     getContent: (payload) => dispatch(getContent(payload)),
+    loading: () => dispatch(loading()),
   };
 }
 
