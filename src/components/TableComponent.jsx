@@ -120,7 +120,7 @@ const TableComponent = ({ state, setState, ...props }) => {
 
   return (
     <>
-      <Table responsive="sm">
+      <Table responsive="lg">
         <thead>
           <tr>
             {props.tableData.head.map((index) => (
