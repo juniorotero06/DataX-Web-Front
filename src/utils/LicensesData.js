@@ -1,3 +1,5 @@
+import * as AiIcons from "react-icons/ai";
+
 export const modalData = {
   title: "Añadir Licensia",
   variantButtom: "success",
@@ -5,6 +7,7 @@ export const modalData = {
 };
 
 export const modalUpdate = {
+  icon: <AiIcons.AiFillEdit />,
   title: "Actualizar",
   variantButtom: "primary",
   showFooter: false,

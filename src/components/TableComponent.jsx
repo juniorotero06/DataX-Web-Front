@@ -1,4 +1,5 @@
 import React from "react";
+import * as AiIcons from "react-icons/ai";
 import ModalComponent from "./ModalComponent";
 import Spiner from "./Spinner";
 import { Table, Button } from "react-bootstrap";
@@ -16,8 +17,6 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 const TableComponent = ({ state, setState, ...props }) => {
-  //const [content, setContent] = React.useState([]);
-
   const request = async () => {
     props.loading();
     try {
@@ -93,7 +92,6 @@ const TableComponent = ({ state, setState, ...props }) => {
 
   React.useLayoutEffect(() => {
     request();
-    console.log("ejecutando");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.pages]);
 
@@ -120,7 +118,7 @@ const TableComponent = ({ state, setState, ...props }) => {
                     variant={props.modalData.variantButtom}
                     onClick={() => onClickUpdate(index.id)}
                   >
-                    {props.modalData.title}
+                    {props.modalData.icon}
                   </Button>
                   {props.loadingState ? (
                     <Spiner />
@@ -137,7 +135,7 @@ const TableComponent = ({ state, setState, ...props }) => {
                     variant="danger"
                     onClick={() => onClickDelete(index.id)}
                   >
-                    Borrar
+                    <AiIcons.AiFillDelete />
                   </Button>
                 </td>
               </tr>

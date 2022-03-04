@@ -24,6 +24,11 @@ const Licenses = (props) => {
 
   tableData.url = `http://localhost:3001/api/licenses?page=${page}&size=10`;
 
+  const tableSearch = {
+    url: `http://localhost:3001/api/license?search=${props.onSearch.search}`,
+    basicUrl: `http://localhost:3001/api/licenses?page=${page}&size=10`,
+  };
+
   formUpdateData.initialValues = {
     companyName: props.values.companyName,
     address: props.values.address,
@@ -44,8 +49,9 @@ const Licenses = (props) => {
   return (
     <>
       <Sidebar />
-      <SearchBar />
+      <SearchBar tableSearch={tableSearch} />
       {/* Create */}
+      <hr />
       <Button
         disabled={props.loading === true}
         variant={modalData.variantButtom}
@@ -80,6 +86,7 @@ function mapStateToProps(state) {
   return {
     values: state.values,
     loading: state.loading,
+    onSearch: state.onSearch,
   };
 }
 

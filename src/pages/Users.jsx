@@ -12,8 +12,6 @@ import {
   tableData,
   modalUpdate,
   formUpdateData,
-  tableSearch,
-  modalSearch,
 } from "../utils/UsersData";
 
 import { connect } from "react-redux";
@@ -21,13 +19,15 @@ import { connect } from "react-redux";
 const Users = (props) => {
   const [stateModalCreate, setModalCreate] = React.useState(false);
   const [stateModalUpdate, setModalUpdate] = React.useState(false);
-  const [stateModalSearch, setModalSearch] = React.useState(false);
 
   const [page, setPage] = React.useState(0);
 
-  tableData.url = `http://localhost:3001/api/users?page=${page}&size=1`;
+  tableData.url = `http://localhost:3001/api/users?page=${page}&size=10`;
 
-  tableSearch.url = `http://localhost:3001/api/users/search?search=${props.onSearch}`;
+  const tableSearch = {
+    url: `http://localhost:3001/api/user?search=${props.onSearch.search}`,
+    basicUrl: `http://localhost:3001/api/users?page=${page}&size=10`,
+  };
 
   formUpdateData.initialValues = {
     name: props.values.name,
@@ -35,33 +35,21 @@ const Users = (props) => {
     email: props.values.email,
   };
 
-  modalSearch.footer = [
-    {
-      variant: "secondary",
-      content: "Close",
-      onClick: () => {
-        setModalSearch(!stateModalSearch);
-      },
-    },
-  ];
-
   const formAux = () => {
     return <FormComponent formData={formData} />;
   };
   const formUpdate = () => {
     return <FormComponent formData={formUpdateData} />;
   };
-
+  React.useState(() => {
+    console.log("onSearch: ", props.onSearch);
+  }, []);
   return (
     <>
       <Sidebar />
-      <SearchBar
-        setModal={setModalSearch}
-        stateModal={stateModalSearch}
-        tableSearch={tableSearch}
-        modalSearch={modalSearch}
-      />
+      <SearchBar tableSearch={tableSearch} />
       {/* Create */}
+      <hr />
       <Button
         disabled={props.loading === true}
         variant={modalData.variantButtom}

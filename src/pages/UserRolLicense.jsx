@@ -28,6 +28,11 @@ const UserRolLicense = (props) => {
 
   tableData.url = `http://localhost:3001/api/pivot?page=${page}&size=10`;
 
+  const tableSearch = {
+    url: `http://localhost:3001/api/userrollic?search=${props.onSearch.search}`,
+    basicUrl: `http://localhost:3001/api/pivot?page=${page}&size=10`,
+  };
+
   formUpdateData.initialValues = {
     UserId: props.values.UserId,
     RolId: props.values.RolId,
@@ -57,8 +62,9 @@ const UserRolLicense = (props) => {
   return (
     <>
       <Sidebar />
-      <SearchBar />
+      <SearchBar tableSearch={tableSearch} />
       {/* Create */}
+      <hr />
       <Button
         disabled={props.loading === true}
         variant={modalData.variantButtom}
@@ -110,6 +116,7 @@ function mapStateToProps(state) {
   return {
     values: state.values,
     loading: state.loading,
+    onSearch: state.onSearch,
   };
 }
 
