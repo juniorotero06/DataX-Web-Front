@@ -52,6 +52,7 @@ export const formData = {
 
 export const formUpdateData = {
   url: "http://localhost:3001/api/users/",
+  urlDesactive: "http://localhost:3001/api/users/desactive/",
   action: "update",
   fields: [
     {

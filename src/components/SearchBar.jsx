@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { onSearch, getContent, loading, getTotalPages } from "../redux/actions";
 import { Formik, Field, Form } from "formik";
-import { Button } from "react-bootstrap";
+import { Button, Tooltip, OverlayTrigger } from "react-bootstrap";
 import * as AiIcons from "react-icons/ai";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -62,12 +62,16 @@ export function SearchBar(props) {
       >
         <Form>
           <Field name="search" type="text" />
-          <Button variant="primary" type="submit">
-            <AiIcons.AiOutlineSearch />
-          </Button>
-          <Button variant="danger" onClick={onClickDelete}>
-            <AiIcons.AiFillDelete />
-          </Button>
+          <OverlayTrigger overlay={<Tooltip>Buscar</Tooltip>}>
+            <Button variant="primary" type="submit">
+              <AiIcons.AiOutlineSearch />
+            </Button>
+          </OverlayTrigger>
+          <OverlayTrigger overlay={<Tooltip>Limpiar Busqueda</Tooltip>}>
+            <Button variant="danger" onClick={onClickDelete}>
+              <AiIcons.AiFillDelete />
+            </Button>
+          </OverlayTrigger>
         </Form>
       </Formik>
     </>
