@@ -4,6 +4,7 @@ import ModalComponent from "../components/ModalComponent";
 import FormComponent from "../components/Form";
 import TableComponent from "../components/TableComponent";
 import ButtonTable from "../components/ButtonTable";
+import SearchBar from "../components/SearchBar";
 import { Button } from "react-bootstrap";
 import {
   modalData,
@@ -21,8 +22,12 @@ const Users = (props) => {
 
   const [page, setPage] = React.useState(0);
 
-  tableData.url = `http://localhost:3001/api/users?page=${page}&size=1`;
-  //tableData.url = `http://localhost:3001/api/users?page=0&size=10`;
+  tableData.url = `http://localhost:3001/api/users?page=${page}&size=10`;
+
+  const tableSearch = {
+    url: `http://localhost:3001/api/user?search=${props.onSearch.search}`,
+    basicUrl: `http://localhost:3001/api/users?page=${page}&size=10`,
+  };
 
   formUpdateData.initialValues = {
     name: props.values.name,
@@ -36,14 +41,17 @@ const Users = (props) => {
   const formUpdate = () => {
     return <FormComponent formData={formUpdateData} />;
   };
-
+  React.useState(() => {
+    console.log("onSearch: ", props.onSearch);
+  }, []);
   return (
     <>
       <Sidebar />
-
+      <SearchBar tableSearch={tableSearch} />
       {/* Create */}
+      <hr />
       <Button
-        //disabled={props.loading === true}
+        disabled={props.loading === true}
         variant={modalData.variantButtom}
         onClick={() => setModalCreate(!stateModalCreate)}
       >
@@ -55,6 +63,7 @@ const Users = (props) => {
         state={stateModalCreate}
         setState={setModalCreate}
       />
+
       <TableComponent
         modalData={modalUpdate}
         tableData={tableData}
@@ -63,7 +72,12 @@ const Users = (props) => {
         state={stateModalUpdate}
         setState={setModalUpdate}
       />
-      <ButtonTable page={page} setPage={setPage} />
+
+      <ButtonTable
+        disabled={props.loading === true}
+        page={page}
+        setPage={setPage}
+      />
     </>
   );
 };
@@ -71,6 +85,8 @@ const Users = (props) => {
 function mapStateToProps(state) {
   return {
     values: state.values,
+    loading: state.loading,
+    onSearch: state.onSearch,
   };
 }
 

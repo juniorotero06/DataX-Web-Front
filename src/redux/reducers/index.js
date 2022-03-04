@@ -5,6 +5,9 @@ import {
   PAGES,
   TOTAL_PAGES,
   GET_CONTENT,
+  LOADING,
+  ON_SEARCH,
+  USER,
 } from "../actions";
 const initialState = {
   authToken: null,
@@ -13,6 +16,9 @@ const initialState = {
   pages: 0,
   totalPages: 1,
   content: [],
+  loading: false,
+  user: null,
+  onSearch: null,
 };
 
 function rootReducer(state = initialState, action) {
@@ -31,6 +37,7 @@ function rootReducer(state = initialState, action) {
   if (action.type === VALUES) {
     return {
       ...state,
+      loading: false,
       values: action.payload,
     };
   }
@@ -49,7 +56,26 @@ function rootReducer(state = initialState, action) {
   if (action.type === GET_CONTENT) {
     return {
       ...state,
+      loading: false,
       content: action.payload,
+    };
+  }
+  if (action.type === USER) {
+    return {
+      ...state,
+      user: action.payload,
+    };
+  }
+  if (action.type === ON_SEARCH) {
+    return {
+      ...state,
+      onSearch: action.payload,
+    };
+  }
+  if (action.type === LOADING) {
+    return {
+      ...state,
+      loading: true,
     };
   }
   return state;

@@ -12,7 +12,7 @@ const ButtonTable = ({ page, setPage, ...props }) => {
     let newPage = page;
     if (page < props.totalPages) {
       newPage = page + 1;
-    } else if (newPage >= props.totalPages) {
+    } else if (newPage === props.totalPages) {
       Swal.fire("No hay mas informacion que mostrar");
     }
     setPage(newPage);

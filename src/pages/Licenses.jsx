@@ -4,6 +4,7 @@ import ModalComponent from "../components/ModalComponent";
 import FormComponent from "../components/Form";
 import TableComponent from "../components/TableComponent";
 import ButtonTable from "../components/ButtonTable";
+import SearchBar from "../components/SearchBar";
 import { Button } from "react-bootstrap";
 import {
   modalData,
@@ -22,6 +23,11 @@ const Licenses = (props) => {
   const [page, setPage] = React.useState(0);
 
   tableData.url = `http://localhost:3001/api/licenses?page=${page}&size=10`;
+
+  const tableSearch = {
+    url: `http://localhost:3001/api/license?search=${props.onSearch.search}`,
+    basicUrl: `http://localhost:3001/api/licenses?page=${page}&size=10`,
+  };
 
   formUpdateData.initialValues = {
     companyName: props.values.companyName,
@@ -43,10 +49,11 @@ const Licenses = (props) => {
   return (
     <>
       <Sidebar />
-
+      <SearchBar tableSearch={tableSearch} />
       {/* Create */}
+      <hr />
       <Button
-        //disabled={props.loading === true}
+        disabled={props.loading === true}
         variant={modalData.variantButtom}
         onClick={() => setModalCreate(!stateModalCreate)}
       >
@@ -66,13 +73,20 @@ const Licenses = (props) => {
         state={stateModalUpdate}
         setState={setModalUpdate}
       />
-      <ButtonTable page={page} setPage={setPage} />
+
+      <ButtonTable
+        disabled={props.loading === true}
+        page={page}
+        setPage={setPage}
+      />
     </>
   );
 };
 function mapStateToProps(state) {
   return {
     values: state.values,
+    loading: state.loading,
+    onSearch: state.onSearch,
   };
 }
 

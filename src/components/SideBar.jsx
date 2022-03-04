@@ -7,6 +7,7 @@ import { SidebarData } from "../utils/SidebarData";
 import SubMenu from "./SubMenu";
 import { IconContext } from "react-icons/lib";
 import { useLocation } from "react-router-dom";
+import { connect } from "react-redux";
 
 const Nav = styled.div`
   background: #fff;
@@ -50,15 +51,20 @@ const SidebarWrap = styled.div`
   width: 100%;
 `;
 
-const Sidebar = () => {
+const Sidebar = (props) => {
   const location = useLocation();
+  const newLocation = location.pathname.slice(1);
   const [sidebar, setSidebar] = useState(false);
 
   const showSidebar = () => setSidebar(!sidebar);
-  React.useEffect(()=>{
+
+  function capitalizarPrimeraLetra(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+  React.useEffect(() => {
     console.log(location.pathname);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <>
       <IconContext.Provider value={{ color: "#737170" }}>
@@ -66,13 +72,11 @@ const Sidebar = () => {
           <NavIcon to="#">
             <FaIcons.FaBars onClick={showSidebar} />
           </NavIcon>
-          <h3>{location.pathname.toUpperCase()}</h3>
+          <h3>{capitalizarPrimeraLetra(newLocation)}</h3>
           <NavIcon>
-            <AiIcons.AiOutlineSearch />
-            <AiIcons.AiFillNotification />
-            <AiIcons.AiOutlineNumber />
+            <AiIcons.AiOutlineUser />
           </NavIcon>
-          <h3>user</h3>
+          <h3>{props.user}</h3>
         </Nav>
         <SidebarNav sidebar={sidebar}>
           <SidebarWrap>
@@ -90,4 +94,11 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+function mapStateToProps(state) {
+  return {
+    authToken: state.authToken,
+    user: state.user,
+  };
+}
+
+export default connect(mapStateToProps)(Sidebar);
