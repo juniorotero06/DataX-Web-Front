@@ -2,7 +2,7 @@ import React from "react";
 import * as AiIcons from "react-icons/ai";
 import ModalComponent from "./ModalComponent";
 import Spiner from "./Spinner";
-import { Table, Button } from "react-bootstrap";
+import { Table, Button, Tooltip, OverlayTrigger } from "react-bootstrap";
 import {
   valuesToUpdate,
   saveId,
@@ -90,6 +90,29 @@ const TableComponent = ({ state, setState, ...props }) => {
     });
   };
 
+  const onClickDsactivate = async (id) => {
+    const url = props.formUpdateData.urlDesactive + String(id);
+    Swal.fire({
+      title: "¿Estas seguro que desea desactivar el registro?",
+      text: "Esta accion no se puede revertir!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#a5a5a5",
+      confirmButtonText: "Desactivar",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await deleteRequest(url, props.authToken);
+        window.location.reload();
+        Swal.fire(
+          "¡Desactivado!",
+          "Se ha Desactivado el registro satisfactoriamente.",
+          "success"
+        );
+      }
+    });
+  };
+
   React.useLayoutEffect(() => {
     request();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -114,12 +137,14 @@ const TableComponent = ({ state, setState, ...props }) => {
               <tr>
                 {mapKeys(index)}
                 <td>
-                  <Button
-                    variant={props.modalData.variantButtom}
-                    onClick={() => onClickUpdate(index.id)}
-                  >
-                    {props.modalData.icon}
-                  </Button>
+                  <OverlayTrigger overlay={<Tooltip>Editar</Tooltip>}>
+                    <Button
+                      variant={props.modalData.variantButtom}
+                      onClick={() => onClickUpdate(index.id)}
+                    >
+                      {props.modalData.icon}
+                    </Button>
+                  </OverlayTrigger>
                   {props.loadingState ? (
                     <Spiner />
                   ) : (
@@ -130,13 +155,23 @@ const TableComponent = ({ state, setState, ...props }) => {
                       setState={setState}
                     />
                   )}
+                  <OverlayTrigger overlay={<Tooltip>Desactivar</Tooltip>}>
+                    <Button
+                      variant="secondary"
+                      onClick={() => onClickDsactivate(index.id)}
+                    >
+                      <AiIcons.AiOutlinePoweroff />
+                    </Button>
+                  </OverlayTrigger>
 
-                  <Button
-                    variant="danger"
-                    onClick={() => onClickDelete(index.id)}
-                  >
-                    <AiIcons.AiFillDelete />
-                  </Button>
+                  <OverlayTrigger overlay={<Tooltip>Borrar</Tooltip>}>
+                    <Button
+                      variant="danger"
+                      onClick={() => onClickDelete(index.id)}
+                    >
+                      <AiIcons.AiFillDelete />
+                    </Button>
+                  </OverlayTrigger>
                 </td>
               </tr>
             ))

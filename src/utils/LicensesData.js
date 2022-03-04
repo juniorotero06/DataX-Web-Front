@@ -80,6 +80,7 @@ export const formData = {
 
 export const formUpdateData = {
   url: "http://localhost:3001/api/licenses/",
+  urlDesactive: "http://localhost:3001/api/license/desactive/",
   action: "update",
   fields: [
     {

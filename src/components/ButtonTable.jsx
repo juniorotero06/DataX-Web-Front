@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "react-bootstrap";
+import { Button, Tooltip, OverlayTrigger } from "react-bootstrap";
 import { AiOutlineStepBackward, AiOutlineStepForward } from "react-icons/ai";
 
 import Swal from "sweetalert2";
@@ -27,15 +27,31 @@ const ButtonTable = ({ page, setPage, ...props }) => {
   };
   return (
     <>
-      <Button id="back" onClick={backPage}>
-        <AiOutlineStepBackward />
-      </Button>
+      <OverlayTrigger overlay={<Tooltip>Anterior</Tooltip>}>
+        {page === 0 ? (
+          <Button disabled={true} id="back" onClick={backPage}>
+            <AiOutlineStepBackward />
+          </Button>
+        ) : (
+          <Button id="back" onClick={backPage}>
+            <AiOutlineStepBackward />
+          </Button>
+        )}
+      </OverlayTrigger>
       <span className="h4">
         Pagina: {page + 1} de {props.totalPages}
       </span>
-      <Button id="next" onClick={nextPage}>
-        <AiOutlineStepForward />
-      </Button>
+      <OverlayTrigger overlay={<Tooltip>Siguiente</Tooltip>}>
+        {page === props.totalPages - 1 ? (
+          <Button disabled={true} id="next" onClick={nextPage}>
+            <AiOutlineStepForward />
+          </Button>
+        ) : (
+          <Button id="next" onClick={nextPage}>
+            <AiOutlineStepForward />
+          </Button>
+        )}
+      </OverlayTrigger>
     </>
   );
 };
