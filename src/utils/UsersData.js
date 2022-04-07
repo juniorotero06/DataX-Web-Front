@@ -19,6 +19,7 @@ export const formData = {
   initialValues: {
     name: "",
     lastname: "",
+    phone: "",
     password: "",
     email: "",
   },
@@ -33,6 +34,12 @@ export const formData = {
       label: "Apellido: ",
       htmlFor: "lastname",
       name: "lastname",
+      type: "text",
+    },
+    {
+      label: "Teléfono: ",
+      htmlFor: "phone",
+      name: "phone",
       type: "text",
     },
     {
@@ -68,6 +75,12 @@ export const formUpdateData = {
       type: "text",
     },
     {
+      label: "Teléfono: ",
+      htmlFor: "phone",
+      name: "phone",
+      type: "text",
+    },
+    {
       label: "Email: ",
       htmlFor: "email",
       name: "email",
@@ -89,6 +102,9 @@ export const tableData = {
     },
     {
       tableHead: "Password",
+    },
+    {
+      tableHead: "Teléfono",
     },
     {
       tableHead: "Activo",

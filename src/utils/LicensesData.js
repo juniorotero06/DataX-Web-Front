@@ -18,6 +18,7 @@ export const formData = {
   action: "create",
   initialValues: {
     companyName: "",
+    licenseId: "",
     address: "",
     email: "",
     phone: "",
@@ -31,6 +32,12 @@ export const formData = {
       label: "Compañia: ",
       htmlFor: "companyName",
       name: "companyName",
+      type: "text",
+    },
+    {
+      label: "Código de Licencia: ",
+      htmlFor: "licenseId",
+      name: "licenseId",
       type: "text",
     },
     {
@@ -90,6 +97,12 @@ export const formUpdateData = {
       type: "text",
     },
     {
+      label: "Código de Licencia: ",
+      htmlFor: "licenseId",
+      name: "licenseId",
+      type: "text",
+    },
+    {
       label: "Dirección: ",
       htmlFor: "address",
       name: "address",
@@ -135,6 +148,9 @@ export const tableData = {
     },
     {
       tableHead: "Nombre de la Compañia",
+    },
+    {
+      tableHead: "Código de licencia",
     },
     {
       tableHead: "Dirección",
