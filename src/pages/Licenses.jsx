@@ -31,6 +31,7 @@ const Licenses = (props) => {
 
   formUpdateData.initialValues = {
     companyName: props.values.companyName,
+    licenseId: props.values.licenseId,
     address: props.values.address,
     email: props.values.email,
     phone: props.values.phone,

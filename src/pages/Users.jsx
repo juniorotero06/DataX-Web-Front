@@ -32,6 +32,7 @@ const Users = (props) => {
   formUpdateData.initialValues = {
     name: props.values.name,
     lastname: props.values.lastname,
+    phone: props.values.phone,
     email: props.values.email,
   };
 
