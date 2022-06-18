@@ -1,5 +1,7 @@
 import * as AiIcons from "react-icons/ai";
 
+//https://api-atxel.herokuapp.com
+
 export const modalData = {
   title: "Crear Asociasión",
   variantButtom: "success",
@@ -14,7 +16,8 @@ export const modalUpdate = {
 };
 
 export const formData = {
-  url: "http://localhost:3001/api/pivot/store",
+  url: "https://api-atxel.herokuapp.com/api/pivot/store",
+  //url: "http://localhost:3001/api/pivot/store",
   action: "create",
   initialValues: {
     UserId: "",
@@ -44,7 +47,7 @@ export const formData = {
 };
 
 export const formUpdateData = {
-  url: "http://localhost:3001/api/pivot/",
+  url: "https://api-atxel.herokuapp.com/api/pivot/",
   action: "update",
   fields: [
     {
@@ -100,7 +103,7 @@ export const modalRoles = {
 };
 
 export const tableRol = {
-  url: "http://localhost:3001/api/rols?page=0&size=10",
+  url: "https://api-atxel.herokuapp.com/api/rols?page=0&size=10",
   head: [
     {
       tableHead: "Id",

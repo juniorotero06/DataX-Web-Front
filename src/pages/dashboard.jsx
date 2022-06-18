@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import Sidebar from "../components/SideBar"
+import Sidebar from "../components/SideBar";
 import { singOut } from "../redux/actions";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -11,7 +11,7 @@ const DashBoard = (props) => {
   const protectedDates = async () => {
     try {
       await axios
-        .get("http://localhost:3001/api/", {
+        .get("https://api-atxel.herokuapp.com/api/", {
           headers: {
             "Content-Type": "application/json",
             "auth-token": props.authToken,
@@ -39,7 +39,7 @@ const DashBoard = (props) => {
 
   return (
     <>
-      <Sidebar/>
+      <Sidebar />
       <button onClick={singOut}>Cerrar sesion</button>
     </>
   );

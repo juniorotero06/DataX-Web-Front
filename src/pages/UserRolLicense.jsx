@@ -26,12 +26,12 @@ const UserRolLicense = (props) => {
 
   const [page, setPage] = React.useState(0);
 
-  tableData.url = `http://localhost:3001/api/pivot?page=${page}&size=10`;
+  tableData.url = `https://api-atxel.herokuapp.com/api/pivot?page=${page}&size=10`;
 
-  const tableSearch = {
-    url: `http://localhost:3001/api/userrollic?search=${props.onSearch.search}`,
-    basicUrl: `http://localhost:3001/api/pivot?page=${page}&size=10`,
-  };
+  // const tableSearch = {
+  //   url: `https://api-atxel.herokuapp.com/api/userrollic?search=${props.onSearch.search}`,
+  //   basicUrl: `https://api-atxel.herokuapp.com/api/pivot?page=${page}&size=10`,
+  // };
 
   formUpdateData.initialValues = {
     UserId: props.values.UserId,
@@ -62,7 +62,7 @@ const UserRolLicense = (props) => {
   return (
     <>
       <Sidebar />
-      <SearchBar tableSearch={tableSearch} />
+      {/* <SearchBar tableSearch={tableSearch} /> */}
       {/* Create */}
       <hr />
       <Button

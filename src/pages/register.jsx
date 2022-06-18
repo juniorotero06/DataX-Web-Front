@@ -21,7 +21,7 @@ export function Register(props) {
   const crearUsuario = async (user, password, name, lastname) => {
     try {
       const res = await axios.post(
-        "http://localhost:3001/api/auth/register",
+        "https://api-atxel.herokuapp.com/api/auth/register",
         {
           email: user,
           password: password,

@@ -14,7 +14,7 @@ export const modalUpdate = {
 };
 
 export const formData = {
-  url: "http://localhost:3001/api/users/store",
+  url: "https://api-atxel.herokuapp.com/api/users/store",
   action: "create",
   initialValues: {
     name: "",
@@ -58,8 +58,8 @@ export const formData = {
 };
 
 export const formUpdateData = {
-  url: "http://localhost:3001/api/users/",
-  urlDesactive: "http://localhost:3001/api/users/desactive/",
+  url: "https://api-atxel.herokuapp.com/api/users/",
+  urlDesactive: "https://api-atxel.herokuapp.com/api/users/desactive/",
   action: "update",
   fields: [
     {

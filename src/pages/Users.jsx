@@ -22,12 +22,12 @@ const Users = (props) => {
 
   const [page, setPage] = React.useState(0);
 
-  tableData.url = `http://localhost:3001/api/users?page=${page}&size=10`;
+  tableData.url = `https://api-atxel.herokuapp.com/api/users?page=${page}&size=10`;
 
-  const tableSearch = {
-    url: `http://localhost:3001/api/user?search=${props.onSearch.search}`,
-    basicUrl: `http://localhost:3001/api/users?page=${page}&size=10`,
-  };
+  // const tableSearch = {
+  //   url: `https://api-atxel.herokuapp.com/api/user?search=${props.onSearch.search}`,
+  //   basicUrl: `https://api-atxel.herokuapp.com/api/users?page=${page}&size=10`,
+  // };
 
   formUpdateData.initialValues = {
     name: props.values.name,
@@ -48,7 +48,7 @@ const Users = (props) => {
   return (
     <>
       <Sidebar />
-      <SearchBar tableSearch={tableSearch} />
+      {/* <SearchBar tableSearch={tableSearch} /> */}
       {/* Create */}
       <hr />
       <Button

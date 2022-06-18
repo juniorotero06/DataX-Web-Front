@@ -1,5 +1,7 @@
 import * as AiIcons from "react-icons/ai";
 
+//var urlServer = "https://api-atxel.herokuapp.com";
+
 export const modalData = {
   title: "Añadir Licensia",
   variantButtom: "success",
@@ -14,7 +16,8 @@ export const modalUpdate = {
 };
 
 export const formData = {
-  url: "http://localhost:3001/api/licenses/store",
+  //url: "http://localhost:3001/api/licenses/store",
+  url: "https://api-atxel.herokuapp.com/api/licenses/store",
   action: "create",
   initialValues: {
     companyName: "",
@@ -86,8 +89,10 @@ export const formData = {
 };
 
 export const formUpdateData = {
-  url: "http://localhost:3001/api/licenses/",
-  urlDesactive: "http://localhost:3001/api/license/desactive/",
+  // url: "http://localhost:3001/api/licenses/",
+  // urlDesactive: "http://localhost:3001/api/license/desactive/",
+  url: "https://api-atxel.herokuapp.com/api/licenses/",
+  urlDesactive: "https://api-atxel.herokuapp.com/api/license/desactive/",
   action: "update",
   fields: [
     {

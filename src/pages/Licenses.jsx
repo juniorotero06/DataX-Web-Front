@@ -22,12 +22,12 @@ const Licenses = (props) => {
 
   const [page, setPage] = React.useState(0);
 
-  tableData.url = `http://localhost:3001/api/licenses?page=${page}&size=10`;
+  tableData.url = `https://api-atxel.herokuapp.com/api/licenses?page=${page}&size=10`;
 
-  const tableSearch = {
-    url: `http://localhost:3001/api/license?search=${props.onSearch.search}`,
-    basicUrl: `http://localhost:3001/api/licenses?page=${page}&size=10`,
-  };
+  // const tableSearch = {
+  //   url: `https://api-atxel.herokuapp.com/api/license?search=${props.onSearch.search}`,
+  //   basicUrl: `https://api-atxel.herokuapp.com/api/licenses?page=${page}&size=10`,
+  // };
 
   formUpdateData.initialValues = {
     companyName: props.values.companyName,
@@ -50,7 +50,7 @@ const Licenses = (props) => {
   return (
     <>
       <Sidebar />
-      <SearchBar tableSearch={tableSearch} />
+      {/* <SearchBar tableSearch={tableSearch} /> */}
       {/* Create */}
       <hr />
       <Button

@@ -22,7 +22,7 @@ function Login(props) {
     try {
       await axios
         .post(
-          "http://localhost:3001/api/auth/login",
+          "https://api-atxel.herokuapp.com/api/auth/login",
           {
             email: user,
             password: password,
